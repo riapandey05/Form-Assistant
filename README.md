@@ -1,22 +1,18 @@
----
-
 # 🗣️ Voice-Activated Form Assistant
 
-A **multilingual, NLP-powered** voice-controlled application that enables users to fill out forms using speech input in **Hindi, Odia, or English**. It uses **machine translation and natural language processing (NLP)** to intelligently map spoken input to corresponding form fields.
+A **multilingual, NLP-powered** voice-controlled application that enables users to fill out forms using speech input in **Hindi, Odia, or English**.
 
 ## 🚀 Features
 
-* 🎤 **Voice input** in Hindi, Odia, or English
-* 🌐 **Automatic translation** of Hindi and Odia to English
-* 🤖 **NLP-based field recognition** using:
-
-  * `DistilBERT` for intent/entity extraction
-  * `Regex` for structured pattern matching
-* 🧠 Smart mapping from speech to form fields
-* 🖥️ **Streamlit-based frontend** for an interactive web UI
+* 🎤 **Voice input** in Hindi, Odia, or English  
+* 🌐 **Automatic translation** of Hindi and Odia to English  
+* 🤖 **NLP-based field recognition** using:  
+  * `DistilBERT` for intent/entity extraction  
+  * `Regex` for structured pattern matching  
+* 🔁 Smart mapping from speech to form fields  
+* 🖥️ **Streamlit-based frontend** for an interactive web UI  
 * ♿ Accessibility-friendly design
 
----
 
 ## 🛠️ Tech Stack
 
