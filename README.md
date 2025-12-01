@@ -1,102 +1,104 @@
-# 🗣️ Voice-Activated Form Assistant
+🗣️ Voice-Activated Form Assistant
 
-A **multilingual, NLP-powered** voice-controlled application that enables users to fill out forms using speech input in **Hindi, Odia, or English**.
+This project is designed to assist users who struggle with manual typing due to physical limitations, age-related issues, accessibility constraints, or simply because they prefer speaking over writing. It provides a hands-free, voice-driven solution for form filling in banking scenarios. The application includes two core form workflows — Deposit and Withdraw, and allows users to provide input in English, Hindi, or Odia, which is then processed and mapped to the correct form fields automatically. The goal is to make digital interaction more human, intuitive, and inclusive.
 
-## 🚀 Features
+❗ Challenge Encountered
 
-* 🎤 **Voice input** in Hindi, Odia, or English  
-* 🌐 **Automatic translation** of Hindi and Odia to English  
-* 🤖 **NLP-based field recognition** using:  
-  * `DistilBERT` for intent/entity extraction  
-  * `Regex` for structured pattern matching  
-* 🔁 Smart mapping from speech to form fields  
-* 🖥️ **Streamlit-based frontend** for an interactive web UI  
-* ♿ Accessibility-friendly design
+The biggest difficulty in building this system was extracting the correct entities from raw speech-to-text output — especially distinguishing between:
 
+Amount
 
-## 🛠️ Tech Stack
+Account Number
 
-| Component          | Technology Used                                 |
-| ------------------ | ----------------------------------------------- |
-| Frontend           | [Streamlit](https://streamlit.io/)              |
-| Speech Input       | SpeechRecognition / Web Speech API              |
-| Translation        | IndicTrans2 / Google Translate API              |
-| NLP Models         | `DistilBERT` (fine-tuned), Regex rules          |
+Phone Number
 
----
+Name
 
-## 🧠 How It Works
+For example, in the spoken input:
 
-1. **Speech Recognition** captures voice input in Hindi, Odia, or English.
-2. **Translation module** converts Hindi and Odia inputs to English.
-3. The input is processed using:
+“Deposit 5000 to account 981234567890 and my phone number is 9876543210”
 
-   * A **DistilBERT** model to extract field-specific intents and values.
-   * **Regex patterns** to catch fixed phrases like emails, phone numbers, etc.
-4. Extracted information is used to **auto-populate** form fields on the Streamlit UI.
+We receive text containing multiple numeric sequences — and the system must correctly map:
 
+5000 → Amount
 
+981234567890 → Account Number
 
----
+9876543210 → Phone Number
 
-## ✨ Example Voice Commands
+This was solved using Regex-based entity rules, such as:
 
-| Spoken Input                    | Populated Field      |
-| ------------------------------- | -------------------- |
-| "मेरा नाम रिया पांडे है"        | Name = "Ria Pandey"  |
-| "ପିନ୍ କୋଡ୍ ୭୫୦୦୧୪" (PIN code)   | Pincode = "750014"   |
-| "My phone number is 9991123344" | Phone = "9991123344" |
+10-digit pattern → Phone
 
----
+12–14 digit sequence → Account Number
 
-## 💻 How to Run
+3–6 digit amount → Amount
 
-1. **Clone the repository**
+Non-numeric text patterns → Name
 
-   ```bash
-   git clone https://github.com/your-username/voice-activated-form-assistant.git
-   cd voice-activated-form-assistant
-   ```
+🚀 Features
 
-2. **Install dependencies**
+🎤 Voice input in Hindi, Odia, or English
 
-   ```bash
-   pip install -r requirements.txt
-   ```
+🌐 Automatic translation to English
 
-3. **Run the Streamlit app**
+🔍 Reliable entity extraction using Regex + DistilBERT
 
-   ```bash
-   streamlit run app.py
-   ```
+🧠 Context-based field identification
 
----
+🖥️ Streamlit interactive UI
 
-## 📦 Requirements
+♿ Accessibility-friendly
 
-* `streamlit`
-* `transformers`
-* `SpeechRecognition`
-* `googletrans` or `indic-trans`
-* `torch`
-* `regex`
-* `nltk`, `spacy` *(optional depending on enhancements)*
+📝 Dedicated forms: Deposit & Withdraw
 
----
+🔔 Real-time field mapping feedback
 
-## 🧩 Future Enhancements
+🛠️ Tech Stack
+Component	Technology Used
+Frontend	Streamlit
+Speech Input	SpeechRecognition / Web Speech API
+Translation	IndicTrans2 / Google Translate API
+NLP Models	DistilBERT (fine-tuned), Regex
+🧠 How It Works
 
-* Add more Indic languages (e.g., Tamil, Bengali)
-* Bi-directional translation for confirmation
-* Store submitted data in database
-* Speech feedback using Text-to-Speech
+User speaks in Hindi / Odia / English
 
----
+Speech is converted to text
 
-## 👩‍💻 Author
+If required, text is translated to English
 
-**Ria Pandey**
-🎓 B.Tech CSE | Machine Learning & NLP Enthusiast
-📬(mailto:riapandey0805@gmail.com)
+Regex detects structured numeric entities
 
----
+DistilBERT extracts semantic entities such as name
+
+Correct entities are auto-filled into the Deposit or Withdraw form
+
+✨ Example Voice Inputs
+Spoken Input	Extracted Entities
+“मेरा नाम रिया पांडे है”	Name = Ria Pandey
+“Transfer 1200 to account 551234789632, and my phone number is 9991123344”	Amount = 1200, Account = 551234789632, Phone = 9991123344
+“ପିନ୍ କୋଡ୍ ୭୫୦୦୧୪ ଏବଂ ମୋ ଫୋନ୍ ୯୧୨୩୪୫୬୭୮୯ ”	Pincode = 750014, Phone = 9123456789
+💻 How to Run
+git clone https://github.com/your-username/voice-activated-form-assistant.git
+cd voice-activated-form-assistant
+pip install -r requirements.txt
+streamlit run app.py
+
+🧩 Future Enhancements
+
+Support for Tamil, Bengali, Marathi
+
+Add speaker identity verification
+
+Database integration for form submissions
+
+Text-to-Speech output for confirmation
+
+Adaptive learning to improve entity extraction accuracy over time
+
+👩‍💻 Author
+
+Ria Pandey
+B.Tech CSE | Machine Learning & NLP Enthusiast
+📬 riapandey0805@gmail.com
